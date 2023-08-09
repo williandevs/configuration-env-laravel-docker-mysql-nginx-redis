@@ -1,4 +1,4 @@
-## apos configurar a parte do docker no terminal digitar docker compose up 
+# apos configurar a parte do docker no terminal digitar docker compose up 
 ## lebrando que o docker tem que esta aberto
 
 ## Laravel - Depois de tudo configurado podemos instalar o laravel 
