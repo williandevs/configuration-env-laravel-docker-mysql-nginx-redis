@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/php/DockerFile
+    container_name: dewtech-app
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./application:/var/www/application
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    image: nginx:1.25.1-alpine-slim
+    container_name: dewtech-nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./application:/var/www/application
+      - ./docker/nginx:/etc/nginx/conf.d
+    environment:
+      - COMPOSER_HOME=/composer
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - APP_ENV=local
+      - APP_KEY=base64:AAThsuiqdvdnYYJu9u6h2kgmS82hWa2aV2C56gwvAXA=
+
+  redis:
+    build:
+      context: ./
+      dockerfile: docker/redis/DockerFile
+    container_name: dewtech-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+
+  db:
+    build:
+      context: ./
+      dockerfile: docker/db/DockerFile
+    container_name: dewtech-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your-root-password
+      MYSQL_DATABASE: your-database-name
+      MYSQL_USER: your-username
+      MYSQL_PASSWORD: your-password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  redis:
+  db:
