@@ -1,11 +1,11 @@
-# apos configurar a parte do docker no terminal digitar docker compose up 
-## lebrando que o docker tem que esta aberto
+ apos configurar a parte do docker no terminal digitar docker compose up 
+ lebrando que o docker tem que esta aberto
 
-## Laravel - Depois de tudo configurado podemos instalar o laravel 
+ Laravel - Depois de tudo configurado podemos instalar o laravel 
 ## docker-compose run --rm app composer create-project --prefer-dist laravel/laravel application
 
-## Apos a instação deve se colocar no docker-compose abaixo de 
-##  - ./application:/var/www/application
+ Apos a instação deve se colocar no docker-compose abaixo de 
+  - ./application:/var/www/application
 
 o comando 
 
@@ -15,15 +15,15 @@ o comando
       - APP_ENV=local
       - APP_KEY= aqui vai a chave gerada pelo .env do laravel.
 
-## feito isso deve reiniciar o docker 
+feito isso deve reiniciar o docker 
 
 docker compose down
 docker compose up
 
-## feito isso digite na barra de navegação http://localhost:8000 o Docker e laravel estara pronto.
+ feito isso digite na barra de navegação http://localhost:8000 o Docker e laravel estara pronto.
 
 
-## application e nome da aplição pode mudar o nome mais mais precisa ser alterado no projeto exe:
+ application e nome da aplição pode mudar o nome mais mais precisa ser alterado no projeto exe:
 
 server {
     listen 80;
